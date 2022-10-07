@@ -1,6 +1,11 @@
 package phoneList;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import java.util.Collections;
 
 /*
  * Phone List
@@ -23,39 +28,46 @@ import java.util.Scanner;
  * 
  */
 
-
 public class PhoneList {
+	ArrayList<Contact> contacts;
 
 	/*
 	 * Instance Variables
 	 */
-	
-	
-	
-	//Constructor
+
+	// Constructor
 	public PhoneList() {
-		//initialize instance variables
+		contacts = new ArrayList<Contact>();
 	}
-	
-	
+
 	/*
-	 * This should do the following
-	 * (whatever order you feel is best)
-	 *   - ask the user for contact's name and number
-	 *   - create a new Contact object with that input
-	 *   - add that object to the phone list
-	 *        in alphabetical order
-	 *        Hint: compareTo(String other)
-	 *   - tell the user what the new contact is and that 
-	 *        it's been added
+	 * This should do the following (whatever order you feel is best) - ask the user
+	 * for contact's name and number - create a new Contact object with that input -
+	 * add that object to the phone list in alphabetical order Hint:
+	 * compareTo(String other) - tell the user what the new contact is and that it's
+	 * been added
 	 */
 	public void addContact() {
-		
-		
+		Scanner inKey = new Scanner(System.in);
+
+		System.out.println("Contact Number: ");
+		String Num = inKey.next();
+
+		System.out.println("Contact Name: ");
+		String Name = inKey.next();
+
+		Contact contact = new Contact(Name, Num);
+
+
+		int j = 0, i = 0;
+		for (i = 0; i < contacts.size() && j != -1 && j != 0; i++) {
+			j = Name.compareToIgnoreCase((contacts.get(i)).Getname());
+		}
+		if (j == 0 || j == -1) {
+			contacts.add(i, contact);
+		}
+
 	}
-	
-	
-	
 	/*
 	 * This should do the following
 	 * (whatever order you feel is best)
@@ -71,10 +83,23 @@ public class PhoneList {
 	 *        
 	 */
 	public void removeContact() {
-		
-		
+		Scanner inKey = new Scanner(System.in);
+		System.out.println();
+		System.out.println("What contact would you like you remove: \n");
+		String remove = inKey.next();
+
+		boolean found = true;
+		for (Contact contact : contacts) {
+			if (!found) {
+				if (contact.Getname().equalsIgnoreCase(remove)) {
+
+					found = true;
+				}
+				contacts.remove(contact);
+			}
+		}
+System.out.println("Removed" + remove);
 	}
-	
 	
 	/*
 	 * This should
